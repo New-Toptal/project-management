@@ -20,19 +20,19 @@ It is not fully completed as a project management system, but the basic function
   - Select Assignees
   - Select Priority(Highest, High, Low, Lowest)
 
-![App screenshot](https://ibb.co/WffMX1f/Jira-add_issue.png)
+![App screenshot](E:\Self-Study\Jira-add_issue.png)
 
 - Implement "Search issue" functionality
   - Write Search Input
   - Show recent issues
 
-![App screenshot](https://ibb.co/FXKytRz/Jira-search.png)
+![App screenshot](E:\Self-Study\Jira-search.png)
 
 - Basic Issue Management Panel
   - Implement issue stage movement
   - Implement Filter functionality(Only My Issues, Recently Updated)
 
-![App screenshot](https://ibb.co/pJxWyXF/dashboard.png)
+![App screenshot](E:\Self-Study\dashboard.png)
 
 - Mannage of each issue in detail
   - Show the details of issue on Modal
