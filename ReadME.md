@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+![App screenshot](https://i.ibb.co/W3qVvCn/jira-optimized.jpg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What is this and who is it for 🤷‍♀️
 
-## Available Scripts
+I do React consulting and this is a showcase product I've built in my spare time. It's a very good example of modern, real-world React codebase.
 
-In the project directory, you can run:
+There are many showcase/example React projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to React developers of all skill levels while still being _relatively_ easy to understand.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Proven, scalable, and easy to understand project structure
+- Written in modern React, only functional components with hooks
+- A variety of custom light-weight UI components such as datepicker, modal, various form elements etc
+- Simple local React state management, without redux, mobx, or similar
+- Custom webpack setup, without create-react-app or similar
+- Client written in Babel powered JavaScript
+- API written in TypeScript and using TypeORM
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Setting up development environment 🛠
 
-### `npm test`
+- Install [postgreSQL](https://www.postgresql.org/) if you don't have it already and create a database named `jira_development`.
+- `git clone https://github.com/oldboyxx/jira_clone.git`
+- Create an empty `.env` file in `/api`, copy `/api/.env.example` contents into it, and fill in your database username and password.
+- `npm run install-dependencies`
+- `cd api && npm start`
+- `cd client && npm start` in another terminal tab
+- App should now be running on `http://localhost:8080/`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running cypress end-to-end tests 🚥
 
-### `npm run build`
+- Set up development environment
+- Create a database named `jira_test` and start the api with `cd api && npm run start:test`
+- `cd client && npm run test:cypress`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## What's missing?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+There are features missing from this showcase product which should exist in a real product:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Migrations 🗄
 
-### `npm run eject`
+We're currently using TypeORM's `synchronize` feature which auto creates the database schema on every application launch. It's fine to do this in a showcase product or during early development while the product is not used by anyone, but before going live with a real product, we should [introduce migrations](https://github.com/typeorm/typeorm/blob/master/docs/migrations.md).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Proper authentication system 🔐
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+We currently auto create an auth token and seed a project with issues and users for anyone who visits the API without valid credentials. In a real product we'd want to implement a proper [email and password authentication system](https://www.google.com/search?q=email+and+password+authentication+node+js&oq=email+and+password+authentication+node+js).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Accessibility ♿
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Not all components have properly defined [aria attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA), visual focus indicators etc. Most early stage companies tend to ignore this aspect of their product but in many cases they shouldn't, especially once their userbase starts growing.
 
-## Learn More
+### Unit/Integration tests 🧪
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Both Client and API are currently tested through [end-to-end Cypress tests](https://github.com/oldboyxx/jira_clone/tree/master/client/cypress/integration). That's good enough for a relatively simple application such as this, even if it was a real product. However, as the app grows in complexity, it might be wise to start writing additional unit/integration tests.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributing
+
+I will not be accepting PR's on this repository. Feel free to fork and maintain your own version.
+
+## License
