@@ -12,11 +12,36 @@ It is not fully completed as a project management system, but the basic function
 
 ## Features
 
-- Proven, scalable, and easy to understand project structure
-- Written in modern React, only functional components with hooks
+- Implement "Create issue" function
+  - Select Issue Type
+  - Input Short Summary
+  - Input Description
+  - Select Reporter
+  - Select Assignees
+  - Select Priority(Highest, High, Low, Lowest)
+
+![App screenshot](https://ibb.co/WffMX1f)
+
+- Implement "Search issue" functionality
+  - Write Search Input
+  - Show recent issues
+
+![App screenshot](https://ibb.co/FXKytRz)
+
+- Basic Issue Management Panel
+  - Implement issue stage movement
+  - Implement Filter functionality(Only My Issues, Recently Updated)
+
+![App screenshot](https://ibb.co/pJxWyXF)
+
+- Mannage of each issue in detail
+  - Show the details of issue on Modal
+  - Status selection
+
+## Languages and Packages
+
 - A variety of custom light-weight UI components such as datepicker, modal, various form elements etc
 - Simple local React state management, without redux, mobx, or similar
-- State management with Redux Saga, Thunk or toolkit
 - Custom webpack setup, without create-react-app or similar
 - Client written in Babel powered JavaScript
 - API written in TypeScript and using TypeORM
