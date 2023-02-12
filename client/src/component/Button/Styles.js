@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { color, font, mixin } from 'shared/utils/styles';
-import Spinner from 'shared/components/Spinner';
+import { color, font, mixin } from '../../util/styles';
+import Spinner from '../Spinner';
 
 export const StyledButton = styled.button`
   display: inline-flex;

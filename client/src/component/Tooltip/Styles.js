@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { zIndexValues, mixin } from 'shared/utils/styles';
+import { zIndexValues, mixin } from '../../util/styles';
 
 export const StyledTooltip = styled.div`
   z-index: ${zIndexValues.modal + 1};

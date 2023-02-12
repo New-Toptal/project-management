@@ -1,19 +1,15 @@
 import React from 'react';
 
-import Button from "../Button"
-import Tooltip from '../Tooltip';
+import Button from '../Button';
+import Tooltip from '../Icon';
 
 import feedbackImage from './assets/feedback.png';
 import { FeedbackDropdown, FeedbackImageCont, FeedbackImage, FeedbackParagraph } from './Styles';
 
-declare type tooltipProps = {
-  tooltipProps: any;
-}
-
-const AboutTooltip = (props: tooltipProps) => (
+const AboutTooltip = tooltipProps => (
   <Tooltip
     width={300}
-    {...props}
+    {...tooltipProps}
     renderContent={() => (
       <FeedbackDropdown>
         <FeedbackImageCont>

@@ -27,16 +27,7 @@ const defaultProps = {
   },
 };
 
-declare type Tooltips = {
-  className: String,
-  placement: any,
-  offset: any,
-  width: Number,
-  renderLink: any,
-  renderContent: any
-}
-
-const Tooltip = (props: Tooltips) => {
+const Tooltip = ({ className, placement, offset, width, renderLink, renderContent }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const $linkRef = useRef();
@@ -49,9 +40,9 @@ const Tooltip = (props: Tooltips) => {
 
   useLayoutEffect(() => {
     const setTooltipPosition = () => {
-      const { top, left } = calcPosition(props.offset, props.placement, $tooltipRef, $linkRef);
-      ($tooltipRef.current as any).style.top = `${top}px`;
-      ($tooltipRef.current as any).style.left = `${left}px`;
+      const { top, left } = calcPosition(offset, placement, $tooltipRef, $linkRef);
+      $tooltipRef.current.style.top = `${top}px`;
+      $tooltipRef.current.style.left = `${left}px`;
     };
 
     if (isOpen) {
@@ -64,36 +55,29 @@ const Tooltip = (props: Tooltips) => {
       window.removeEventListener('resize', setTooltipPosition);
       window.removeEventListener('scroll', setTooltipPosition);
     };
-  }, [isOpen, props.offset, props.placement]);
+  }, [isOpen, offset, placement]);
 
   return (
     <Fragment>
-      {props.renderLink({ ref: $linkRef, onClick: isOpen ? closeTooltip : openTooltip })}
+      {renderLink({ ref: $linkRef, onClick: isOpen ? closeTooltip : openTooltip })}
 
       {isOpen &&
         ReactDOM.createPortal(
-          <StyledTooltip className={props.className} ref={$tooltipRef} width={props.width}>
-            {props.renderContent({ close: closeTooltip })}
+          <StyledTooltip className={className} ref={$tooltipRef} width={width}>
+            {renderContent({ close: closeTooltip })}
           </StyledTooltip>,
-          $root as any,
+          $root,
         )}
     </Fragment>
   );
 };
 
-declare type calcPositionProp = {
-  offset: any,
-  placement: any,
-  $tooltipRef: any,
-  $linkRef: any
-}
-
-const calcPosition = (props: calcPositionProp) => {
+const calcPosition = (offset, placement, $tooltipRef, $linkRef) => {
   const margin = 10;
-  const finalOffset = { ...defaultProps.offset, ...props.offset };
+  const finalOffset = { ...defaultProps.offset, ...offset };
 
-  const tooltipRect = props.$tooltipRef.current.getBoundingClientRect();
-  const linkRect = props.$linkRef.current.getBoundingClientRect();
+  const tooltipRect = $tooltipRef.current.getBoundingClientRect();
+  const linkRect = $linkRef.current.getBoundingClientRect();
 
   const linkCenterY = linkRect.top + linkRect.height / 2;
   const linkCenterX = linkRect.left + linkRect.width / 2;
@@ -117,8 +101,8 @@ const calcPosition = (props: calcPositionProp) => {
     },
   };
   return {
-    top: placements[props.placement].top + finalOffset.top,
-    left: placements[props.placement].left + finalOffset.left,
+    top: placements[placement].top + finalOffset.top,
+    left: placements[placement].left + finalOffset.left,
   };
 };
 

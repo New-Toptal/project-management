@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { font } from 'shared/utils/styles';
+import { font } from '../../util/styles';
 
 export const FeedbackDropdown = styled.div`
   padding: 16px 24px 24px;
