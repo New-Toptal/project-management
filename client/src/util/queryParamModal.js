@@ -1,4 +1,4 @@
-import history from 'browserHistory';
+import history from './browserHistory';
 import { queryStringToObject, addToQueryString, omitFromQueryString } from './url';
 
 const open = param =>
